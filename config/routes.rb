@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  
+  resources :customers do
+    
+  end
 
   # 管理者用
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
