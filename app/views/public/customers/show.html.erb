@@ -1,1 +1,23 @@
 <h1>public/customers/show</h1>
+
+<%= image_tag @customer.get_profile_image(100, 100) %>
+
+<%= @customer.name %>
+
+<%= @customer.introduction %>
+
+<% if current_customer != @customer %>
+  <%= render "public/relationships/btn", customer: @customer %>
+<% elsif @customer.name == "guestuser" %>
+  <p>会員情報の編集はできません</p>
+<% else %>
+  <%= link_to edit_customer_path(@customer), class: "btn btn-outline-secondary btn-block edit_customer_#{@customer.id}" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
+<% end %>
+
+<h6>フォロー</h6>
+<%= link_to @customer.followings.count, customer_followings_path(@customer) %>
+
+<h6>フォロワー</h6>
+<%= link_to @customer.followers.count, customer_followers_path(@customer) %>

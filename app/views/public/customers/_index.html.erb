@@ -1,0 +1,10 @@
+<table class='table'>
+  <tbody>
+    <% customers.each do |customer| %>
+      <tr>
+        <td><%= image_tag customer.get_profile_image(50, 50) %></td>
+        <td><%= customer.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
