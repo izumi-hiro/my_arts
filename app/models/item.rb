@@ -17,12 +17,12 @@ class Item < ApplicationRecord
     new_tags = sent_tags - current_tags
     
     old_tags.each do |old|
-      self.item_tags.delete ItemTag.find_by(name: old)
+      self.tags.delete Tag.find_by(name: old)
     end
     
     new_tags.each do |new|
-      new_item_tag = ItemTag.find_or_create_by(name: new)
-      self.item_tags << new_item_tag
+      new_item_tag = Tag.find_or_create_by(name: new)
+      self.tags << new_item_tag
     end
   end
   
