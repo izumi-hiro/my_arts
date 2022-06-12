@@ -1,1 +1,16 @@
-<h1>public/items/new</h1>
+<h1>作品投稿</h1>
+<%= form_with model: @item, url: items_path, local: true do |f| %>
+  <%= f.label :"作品画像" %>
+  <%= f.attachment_field :item_images_images, multiple: true %>
+  
+  <%= f.label :"タイトル" %>
+  <%= f.text_field :title %>
+  
+  <%= f.label :"説明文" %>
+  <%= f.text_area :body %>
+  
+  <%= f.label :"タグ" %>
+  <%= f.text_field :name, placeholder: "スペースを空けて複数のタグを入力できます" %>
+  
+  <%= f.submit "投稿"%>
+<% end %>

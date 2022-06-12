@@ -21,3 +21,23 @@
 
 <h6>フォロワー</h6>
 <%= link_to @customer.followers.count, customer_followers_path(@customer) %>
+
+<div class="row">
+  <h1>作品一覧</h1>
+</div>
+<div class="row">
+  <table class="table">
+    <% @items.each do |item| %>
+      <tr><td><%= item.title %></td></tr>
+      <tr><td><%= item.body %></td></tr>
+      <tr>
+        <td>
+          <% item.item_images.each do |item_image| %>
+            <%= attachment_image_tag item_image, :image, size: "130x100", format: "jpg" %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+

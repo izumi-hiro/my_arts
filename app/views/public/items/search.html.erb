@@ -1,0 +1,11 @@
+<h3>タグリスト</h3>
+<% @tag_list.each do |list| %>
+  <span>
+    <%= link_to item.name, tag_items_path(item_tag_id: list.id) %>
+    <%= "#{list.items.count}" %>
+  </span>
+<% end %>
+
+<% @item.items_images.each do |item_image| %>
+  <%= attachment_image_tag item_image, :image, size: "130x100", format: "jpg" %>
+<% end %>

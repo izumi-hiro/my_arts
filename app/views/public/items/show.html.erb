@@ -1,1 +1,15 @@
 <h1>public/items/show</h1>
+
+<% @item.item_images.each do |item_image| %>
+  <%= attachment_image_tag item_image, :image, size: "130x100", format: "jpg" %>
+<% end %>
+
+<%= @item.title %>
+<%= @item.body %>
+
+<% @item_tags.each do |tag| %>
+  <span>
+    <%= link_to @item.name, tag_items_path(tag_id: list.id) %>
+    <%= "#{list.items.count}" %>
+  </span>
+<% end %>
