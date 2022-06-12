@@ -7,9 +7,19 @@
 <%= @item.title %>
 <%= @item.body %>
 
-<% @item_tags.each do |tag| %>
+<% @item_tags.each do |list| %>
   <span>
-    <%= link_to tag.name, tag_items_path(tag_id: tag.id) %>
-    <%= "#{tag.items.count}" %>
+    <%= link_to list.name, tag_items_path(tag_id: list.id) %>
+    <%= "#{list.items.count}" %>
   </span>
+<% end %>
+
+<%= image_tag @item.customer.get_profile_image(100, 100) %>
+<%= @item.customer.name %>
+
+<% if current_customer != @customer %>
+  <%= render "public/relationships/btn", customer: @customer %>
+<% else %>
+  <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-success" %>
+  <%= link_to 'Destroy', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
 <% end %>

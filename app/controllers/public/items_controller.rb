@@ -8,6 +8,7 @@ class Public::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
     @item_tags = @item.tags
+    @customer = @item.customer
   end
 
   def new
@@ -27,9 +28,16 @@ class Public::ItemsController < ApplicationController
   end
 
   def edit
+    @item = Item.find(params[:id])
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: "作品情報を変更しました"
+    else
+      render "edit"
+    end
   end
 
   def destroy

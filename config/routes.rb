@@ -37,6 +37,7 @@ Rails.application.routes.draw do
       resources :item_comments, only: [:create, :destroy]
     end
     
+    # tags
     resources :tags do
       get 'items', to: 'items#search'
     end
