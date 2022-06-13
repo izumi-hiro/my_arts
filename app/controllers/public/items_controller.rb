@@ -9,6 +9,7 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @item_tags = @item.tags
     @customer = @item.customer
+    @item_comment = ItemComment
   end
 
   def new

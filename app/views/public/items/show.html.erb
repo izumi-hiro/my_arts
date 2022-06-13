@@ -17,9 +17,34 @@
 <%= image_tag @item.customer.get_profile_image(100, 100) %>
 <%= @item.customer.name %>
 
-<% if current_customer != @customer %>
-  <%= render "public/relationships/btn", customer: @customer %>
+<% if customer_signed_in? %>
+  <% if current_customer != @customer %>
+    <%= render "public/relationships/btn", customer: @customer %>
+  <% else %>
+    <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-success" %>
+    <%= link_to 'Destroy', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
+  <% end %>
 <% else %>
-  <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-success" %>
-  <%= link_to 'Destroy', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
+  <p class="text-danger">フォロー機能はログイン後に行えます</p>
+  <%= link_to new_customer_session_path class: 'btn btn-default' do %>
+    <b>ログインはこちら</b>
+  <% end %>
 <% end %>
+
+
+<%= render 'public/item_comments/index', item: @item %>
+
+<% if customer_signed_in? %>
+  <%= form_with model: [@item, @item_comment] do |f| %>
+    <%= f.text_area :comment, size: "100x5", placeholder: "コメントをここに" %>
+    <%= f.submit "送信" %>
+  <% end %>
+<% else %>
+  <p class="text-danger">コメントはログイン後に行えます</p>
+  <%= link_to new_customer_session_path class: 'btn btn-default' do %>
+    <b>ログインはこちら</b>
+  <% end %>
+<% end %>
+
+<table class="item_comments">
+</table>
