@@ -1,13 +1,15 @@
-<table class="table">
+<div class="row">
   <% items.each do |item| %>
-    <tr>
-      <td>
-        <% item.item_images.each do |item_image| %>
-          <%= link_to(item) do %>
-            <%= attachment_image_tag item_image, :image, size: "130x100", format: "jpg" %>
-          <% end %>
+    <% item.item_images.each do |item_image| %>
+      <div class="col-lg-3 col-md-6">
+        <%= link_to(item) do %>
+          <div class="card">
+            <div class="card-img-top text-center">
+              <%= attachment_image_tag item_image, :image, size: "260x180", format: "jpg" %>
+            </div>
+          </div>
         <% end %>
-      </td>
-    </tr>
+      </div>
+    <% end %>
   <% end %>
-</table>
+</div>

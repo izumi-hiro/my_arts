@@ -30,11 +30,15 @@ class Public::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @tag_list = @item.tags.pluck(:name).join(",")
   end
 
   def update
     @item = Item.find(params[:id])
+    @item.customer_id = current_customer.id
+    tag_list = params[:item][:name].split(nil)
     if @item.update(item_params)
+      @item.save_tag(tag_list)
       redirect_to item_path(@item), notice: "作品情報を変更しました"
     else
       render "edit"
