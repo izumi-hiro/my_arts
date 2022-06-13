@@ -2,7 +2,6 @@
   <h1>public/customers/show</h1>
   
   <%= image_tag @customer.get_profile_image(100, 100) %>
-  
   <%= @customer.name %>
   <%= @customer.introduction %>
   
@@ -22,7 +21,6 @@
   
   <h6>フォロー</h6>
   <%= link_to @customer.followings.count, customer_followings_path(@customer) %>
-  
   <h6>フォロワー</h6>
   <%= link_to @customer.followers.count, customer_followers_path(@customer) %>
 

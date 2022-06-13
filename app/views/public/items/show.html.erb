@@ -5,6 +5,9 @@
 <% end %>
 
 <%= @item.title %>
+<span class="favorites_buttons_<%= @item.id %>">
+  <%= render 'public/favorites/btn', item: @item %>
+</span>
 <%= @item.body %>
 
 <% @item_tags.each do |list| %>
@@ -33,12 +36,14 @@
 
 <h3>コメント</h3>
 <% if customer_signed_in? %>
-  <%= form_with model: [@item, @item_comment] do |f| %>
-    <%= f.text_area :comment, size: "100x5", placeholder: "コメントをここに" %>
-    <%= f.submit "送信" %>
-  <% end %>
-<% else %>
-  <p></p>
+  <div class="new_comment">
+    <%= form_with model: [@item, @item_comment], local: false do |f| %>
+      <%= f.text_area :comment, size: "100x5", placeholder: "コメントをここに" %>
+      <%= f.submit "送信" %>
+    <% end %>
+  </div>
 <% end %>
-
-<%= render 'public/item_comments/index', item: @item %>
+<p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
+<div id="comment-area" class="comments_area">
+  <%= render 'public/item_comments/index', item: @item %>
+</div>
