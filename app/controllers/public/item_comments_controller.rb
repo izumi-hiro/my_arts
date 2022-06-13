@@ -1,10 +1,10 @@
 class Public::ItemCommentsController < ApplicationController
   
   def create
-    item = Item.find(params[:item_id])
+    @item = Item.find(params[:item_id])
     comment = current_customer.item_comments.new(item_comment_params)
-    comment.item_id = item.id
-    item.save
+    comment.item_id = @item.id
+    comment.save
     redirect_to request.referer
   end
   

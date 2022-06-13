@@ -2,7 +2,7 @@ class Public::CustomersController < ApplicationController
   
   def show
     @customer = Customer.find(params[:id])
-    @items = @customer.items
+    @items = @customer.items.includes(:item_images).order("created_at DESC")
   end
   
   def edit
