@@ -1,29 +1,29 @@
 class Admin::ItemsController < ApplicationController
-  
+
   def index
-    @items = Item.all
+    @items = Item.all.includes(:item_images).order("created_at DESC")
   end
-  
+
   def show
     @item = Item.find(params[:id])
     @item_tags = @item.tags
     @customer = @item.customer
     @item_comment = ItemComment
   end
-  
+
   def edit
     @item = Item.find(params[:id])
   end
-  
+
   def update
   end
-  
+
   private
 
   def item_params
     params.require(:item).permit(:title, :body, :is_active, item_images_images: [])
   end
-  
+
 end
 
 
