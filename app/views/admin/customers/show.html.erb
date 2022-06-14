@@ -1,1 +1,19 @@
-<h1>admin/customers/show</h1>
+<div class="container">
+  <h1>admin/customers/show</h1>
+  
+  <%= image_tag @customer.get_profile_image(100, 100) %>
+  <%= @customer.name %>
+  <%= @customer.introduction %>
+  
+  <%= link_to edit_admin_customer_path(@customer), class: "btn btn-outline-secondary btn-block edit_customer_#{@customer.id}" do %>
+    <i class="fas fa-user-cog"></i>
+  <% end %>
+
+  <div class="row">
+    <h1>作品一覧</h1>
+  </div>
+  <div class="row">
+    <%= render 'public/items/index', items: @items %>
+  </div>
+</div>
+

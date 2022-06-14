@@ -7,7 +7,18 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-          <% if customer_signed_in? %>
+          <% if admin_signed_in? %>
+            <li class="nav-item">
+              <%= link_to items_customers_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-home"></i>会員一覧
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to items_items_path, class: 'nav-link text-light' do %>
+                <i class="fas fa-home"></i>作品一覧
+              <% end %>
+            </li>
+          <% elsif customer_signed_in? %>
             <li class="nav-item">
               <%= link_to items_path, class: 'nav-link text-light' do %>
                 <i class="fas fa-home"></i>作品一覧
