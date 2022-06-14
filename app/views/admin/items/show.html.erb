@@ -1,1 +1,33 @@
 <h1>admin/items/show</h1>
+
+<% @item.item_images.each do |item_image| %>
+  <%= attachment_image_tag item_image, :image, size: "130x100", format: "jpg" %>
+<% end %>
+
+<%= @item.title %>
+<%= @item.body %>
+
+<% @item_tags.each do |list| %>
+  <span>
+    <%= link_to list.name, tag_items_path(tag_id: list.id) %>
+    <%= "#{list.items.count}" %>
+  </span>
+<% end %>
+
+<%= image_tag @item.customer.get_profile_image(100, 100) %>
+<%= @item.customer.name %>
+
+<%= link_to 'Edit', edit_item_path(@item), class: "btn btn-success" %>
+<%= link_to 'Destroy', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
+
+<% if @item.is_active_i18n == "公開中" %>
+  <b class="text-success"><%= @item.is_active_i18n %></b>
+<% else %>
+  <b class="text-danger"><%= @item.is_active_i18n %></b>
+<% end %>
+
+<h3>コメント</h3>
+<p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
+<div id="comment-area" class="comments_area">
+  <%= render 'public/item_comments/index', item: @item %>
+</div>

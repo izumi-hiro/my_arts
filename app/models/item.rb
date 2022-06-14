@@ -30,4 +30,6 @@ class Item < ApplicationRecord
     favorites.exists?(customer_id: customer.id)
   end
   
+  enum is_active: { display: true, closed: false }
+  
 end

@@ -1,0 +1,15 @@
+<div class="row">
+  <% items.each do |item| %>
+    <% item.item_images.each do |item_image| %>
+      <div class="col-lg-3 col-md-6">
+        <%= link_to admin_item_path(item) do %>
+          <div class="card">
+            <div class="card-img-top text-center">
+              <%= attachment_image_tag item_image, :image, size: "260x180", format: "jpg" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% end %>
+</div>

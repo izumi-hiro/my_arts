@@ -1,0 +1,6 @@
+ja:
+  enums:
+    item:
+      is_active:
+        display: "公開中"
+        closed: "非公開"
