@@ -39,7 +39,6 @@
           <%= render "public/relationships/btn", customer: @customer %>
         <% else %>
           <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-success" %>
-          <%= link_to 'Destroy', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
         <% end %>
       </div>
     <% else %>
@@ -51,20 +50,20 @@
         </div>
     <% end %>
   </div>
-  <div class="row offset-1">
-    <h3>コメント</h3>
+  <div class="row offset-3">
+    <h5>コメント</h5>
   </div>
   <div class="row justify-content-center">
     <% if customer_signed_in? %>
       <div class="new_comment">
         <%= form_with model: [@item, @item_comment], local: false do |f| %>
-          <%= f.text_area :comment, size: "100x5", placeholder: "コメントをここに" %>
+          <%= f.text_area :comment, size: "70x4", placeholder: "コメントをここに" %>
           <%= f.submit "送信" %>
         <% end %>
       </div>
     <% end %>
   </div>
-  <div class="row offset-1">
+  <div class="row offset-3">
     <p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
   </div>
   <div class="row justify-content-center">

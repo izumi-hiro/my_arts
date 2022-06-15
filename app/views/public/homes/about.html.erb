@@ -1,14 +1,29 @@
-<h1>public/homes/about</h1>
-<h1>会員登録をするとできること</h1>
-<h3>作品を投稿できる</h3>
-<h5>作品が完成したら写真を撮ってMyArtsに投稿しましょう！<br>あなたの作品をたくさんの方に見ていただけます！</h5>
-<h3>好きな作品に「いいね」できる</h3>
-<h5>好きな作品に「いいね」をして、お気に入り保存できます。<br>マイページからいつでもお気に入りを鑑賞できます。</h5>
-<h3>作品にコメントできる</h3>
-<h5>その作品を見て感じたことをコメントに残しましょう！<br>その言葉がお互いの創作意欲を高めてくれます。</h5>
-<h3>作者をフォローできる</h3>
-<h5>気になった作者をフォローすると、<br>その作者の新作や作品一覧をすぐチェックできます。</h5>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <h1 class="about-title"><b>会員登録をするとできること</b></h1>
+  </div>
+  <div class="about-box">
+    <div class="row d-flex justify-content-center">
+      <h3 class="about1">作品を投稿できる</h3>
+      <h5 class="about2">作品が完成したら写真を撮ってMyArtsに投稿しましょう！<br>あなたの作品をたくさんの方に見ていただけます！</h5>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <h3 class="about1">好きな作品に「いいね」できる</h3>
+      <h5 class="about2">好きな作品に「いいね」をして、お気に入り保存できます。<br>マイページからいつでもお気に入りを鑑賞できます。</h5>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <h3 class="about1">作品にコメントできる</h3>
+      <h5 class="about2">その作品を見て感じたことをコメントに残しましょう！<br>その言葉がお互いの創作意欲を高めてくれます。</h5>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <h3 class="about1">作者をフォローできる</h3>
+      <h5 class="about2">気になった作者をフォローすると、<br>その作者の新作や作品一覧をすぐチェックできます。</h5>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <%= link_to new_customer_registration_path do %>
+      <h4>会員登録はこちら</h4>
+    <% end %>
+  </div>
+</div>
 
-<%= link_to new_customer_registration_path do %>
-  <i class="fas fa-user-plus"></i>会員登録はこちら
-<% end %>

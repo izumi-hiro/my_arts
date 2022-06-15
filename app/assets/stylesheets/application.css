@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+ 
+ .about-title {
+   margin-bottom: 30px;
+ }
+ 
+ .about-box {
+   margin: 0 auto;
+ }
+ 
+.about1 {
+  margin: 10px 10px 50px 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: pink;
+}
+
+.about2 {
+  margin: 50px 10px 10px 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: lightblue;
+}
+
