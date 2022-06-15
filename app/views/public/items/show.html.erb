@@ -1,50 +1,76 @@
-<h1>public/items/show</h1>
-
-<% @item.item_images.each do |item_image| %>
-  <%= attachment_image_tag item_image, :image, size: "130x100", format: "jpg" %>
-<% end %>
-
-<%= @item.title %>
-
-<span class="favorites_buttons_<%= @item.id %>">
-  <%= render 'public/favorites/btn', item: @item %>
-</span>
-<%= @item.body %>
-
-<% @item_tags.each do |list| %>
-  <span>
-    <%= link_to list.name, tag_items_path(tag_id: list.id) %>
-    <%= "#{list.items.count}" %>
-  </span>
-<% end %>
-
-<%= image_tag @item.customer.get_profile_image(100, 100) %>
-<%= @item.customer.name %>
-
-<% if customer_signed_in? %>
-  <% if current_customer != @customer %>
-    <%= render "public/relationships/btn", customer: @customer %>
-  <% else %>
-    <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-success" %>
-    <%= link_to 'Destroy', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
-  <% end %>
-<% else %>
-  <p class="text-danger">フォロー、コメント、お気に入り機能はログイン後に行えます</p>
-  <%= link_to new_customer_session_path class: 'btn btn-default' do %>
-    <b>ログインはこちら</b>
-  <% end %>
-<% end %>
-
-<h3>コメント</h3>
-<% if customer_signed_in? %>
-  <div class="new_comment">
-    <%= form_with model: [@item, @item_comment], local: false do |f| %>
-      <%= f.text_area :comment, size: "100x5", placeholder: "コメントをここに" %>
-      <%= f.submit "送信" %>
+<div class="container">
+  <div class="row">
+    <h1>public/items/show</h1>
+  </div>
+  <div class="row justify-content-center">
+    <% @item.item_images.each do |item_image| %>
+      <%= attachment_image_tag item_image, :image, size: "260x200", format: "jpg" %>
     <% end %>
   </div>
-<% end %>
-<p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
-<div id="comment-area" class="comments_area">
-  <%= render 'public/item_comments/index', item: @item %>
+  <div class="row">
+    <div class="col-6 text-right">
+      <%= @item.title %>
+    </div>
+    <div class="col-6 justify-content-center">
+      <span class="favorites_buttons_<%= @item.id %>">
+        <%= render 'public/favorites/btn', item: @item %>
+      </span>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= @item.body %>
+  </div>
+  <div class="row justify-content-center">
+    <% @item_tags.each do |list| %>
+      <span>
+        <%= link_to list.name, tag_items_path(tag_id: list.id) %>
+        <%= "#{list.items.count}" %>
+      </span>
+    <% end %>
+  </div>
+  <div class="row offset-3">
+    <div class="col-3">
+      <%= image_tag @item.customer.get_profile_image(60, 60) %>
+      <%= @item.customer.name %>
+    </div>
+    <% if customer_signed_in? %>
+      <div class="col-3 offset-1">
+        <% if current_customer != @customer %>
+          <%= render "public/relationships/btn", customer: @customer %>
+        <% else %>
+          <%= link_to 'Edit', edit_item_path(@item), class: "btn btn-success" %>
+          <%= link_to 'Destroy', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="col-5">
+        <p class="text-danger">フォロー、コメント、お気に入りは<br>ログイン後に行えます</p>
+        <%= link_to new_customer_session_path class: 'btn btn-default' do %>
+          <b>ログインはこちら</b>
+        <% end %>
+        </div>
+    <% end %>
+  </div>
+  <div class="row offset-1">
+    <h3>コメント</h3>
+  </div>
+  <div class="row justify-content-center">
+    <% if customer_signed_in? %>
+      <div class="new_comment">
+        <%= form_with model: [@item, @item_comment], local: false do |f| %>
+          <%= f.text_area :comment, size: "100x5", placeholder: "コメントをここに" %>
+          <%= f.submit "送信" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="row offset-1">
+    <p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
+  </div>
+  <div class="row justify-content-center">
+    <div id="comment-area" class="comments_area">
+      <%= render 'public/item_comments/index', item: @item %>
+    </div>
+  </div>
 </div>
+
