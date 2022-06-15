@@ -4,8 +4,7 @@ ja:
       is_active:
         display: "公開中"
         closed: "非公開"
-
     customer:
       is_deleted:
-        off: "退会"
-        on: "有効"
+        _invalid: "退会"
+        _valid: "有効"
