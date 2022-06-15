@@ -1,7 +1,7 @@
 class Public::ItemsController < ApplicationController
 
   def index
-    @items = Item.where(is_active: true).includes(:item_images).order("created_at DESC")
+    @items = Item.where(is_active: true).includes(:item_images).order("created_at DESC").page(params[:page]).per(8)
     @tag_list = Tag.all
   end
 

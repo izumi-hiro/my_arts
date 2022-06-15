@@ -1,7 +1,8 @@
-<div class="px-5 mx-5">
-  <div class="mx-3"><h3 class="mb-5">会員一覧</h3></div>
+<div class="container">
+  <div class="row">
+    <h3 class="mb-5">会員一覧</h3>
+  </div>
   <div class="row mx-5 px-5">
-
     <table class="table border-bottom">
       <thead class="thead-light">
         <tr>
@@ -14,28 +15,27 @@
       <tbody>
         <% @customers.each do |customer| %>
           <tr>
-            <td>
-              <%= customer.id %>
-            </td>
+            <td><%= customer.id %></td>
             <td>
               <%= link_to admin_customer_path(customer), class:"text-dark" do %>
                 <%= image_tag customer.get_profile_image(70, 70) %>
                 <%= customer.name %>
               <% end %>
             </td>
+            <td><%= customer.email %></td>
             <td>
-              <%= customer.email %>
-            </td>
-            <td>
-              <% if customer.active_for_authentication? %>
-                <b class="text-success">有効</b>
+              <% if customer.is_deleted_i18n == "退会" %>
+                <b class="text-success"><%= customer.is_deleted_i18n %></b>
               <% else %>
-                <b class="text-muted">退会</b>
+                <b class="text-danger"><%= customer.is_deleted_i18n %></b>
               <% end %>
             </td>
           </tr>
         <% end %>
       </tbody>
     </table>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= paginate @customers, theme: 'twitter-bootstrap-4' %>
   </div>
 </div>

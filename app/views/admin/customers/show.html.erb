@@ -1,16 +1,20 @@
 <div class="container">
-  <h1>admin/customers/show</h1>
-  
-  <%= image_tag @customer.get_profile_image(100, 100) %>
-  <%= @customer.name %>
-  <%= @customer.introduction %>
-  
-  <%= link_to edit_admin_customer_path(@customer), class: "btn btn-outline-secondary btn-block edit_customer_#{@customer.id}" do %>
-    <i class="fas fa-user-cog"></i>
-  <% end %>
-
   <div class="row">
-    <h1>作品一覧</h1>
+    <h1>admin/customers/show</h1>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <%= image_tag @customer.get_profile_image(100, 100) %>
+      <b><%= @customer.name %></b>
+    </div>
+    <div class="col-3 d-flex align-items-center">
+      <%= @customer.introduction %>
+    </div>
+    <div class="col-3 d-flex align-items-center">
+      <%= link_to edit_admin_customer_path(@customer), class: "btn btn-outline-secondary btn-block" do %>
+        <i class="fas fa-user-cog"></i>
+      <% end %>
+    </div>
   </div>
   <div class="row">
     <%= render 'admin/items/index', items: @items %>

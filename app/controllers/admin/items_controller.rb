@@ -1,7 +1,7 @@
 class Admin::ItemsController < ApplicationController
 
   def index
-    @items = Item.all.includes(:item_images).order("created_at DESC")
+    @items = Item.all.includes(:item_images).order("created_at DESC").page(params[:page]).per(10)
   end
 
   def show
@@ -13,9 +13,16 @@ class Admin::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
+    @item_tags = @item.tags
   end
 
   def update
+    @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to admin_item_path, notice: "更新に成功しました"
+    else
+      render "edit"
+    end
   end
 
   private

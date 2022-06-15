@@ -39,6 +39,8 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
   
+  enum is_deleted: { off: true, on: false }
+  
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|
       customer.password = SecureRandom.urlsafe_base64

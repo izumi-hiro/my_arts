@@ -1,22 +1,29 @@
-<h1>admin/items/edit</h1>
-<% @item.item_images.each do |item_image| %>
-  <%= attachment_image_tag item_image, :image, size: "130x100", format: "jpg" %>
-<% end %>
-
-<%= @item.title %>
-<%= @item.body %>
-
-<%= form_with model: @item, local: true do |f| %>
-  <%= f.label :"タグ" %>
-  <%= f.text_field :name %>
-
-  <div class="form-group">
-    <%= f.label :公開ステータス %>
-    <%= f.radio_button :is_active, Item.is_actives.key(true) %>
-    <%= f.label :is_active, Item.is_actives_i18n[:display] %>
-    <%= f.radio_button :is_active, Item.is_actives.key(false) %>
-    <%= f.label :is_active, Item.is_actives_i18n[:closed] %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h3>作品情報編集</h3>
+      <% @item.item_images.each do |item_image| %>
+        <%= attachment_image_tag item_image, :image, size: "150x120", format: "jpg" %>
+      <% end %>
+      <p>タイトル：<%= @item.title %></p>
+      <p>説明　　：<%= @item.body %></p>
+      <p>タグ　　：
+        <% @item_tags.each do |list| %>
+          <span>#<%= list.name %></span>
+        <% end %>
+      </p>
+      <%= form_with model: @item, local: true do |f| %>
+        <div class="form-group">
+          <b><%= f.label :公開ステータス %></b>
+          <%= f.radio_button :is_active, Item.is_actives.key(true) %>
+          <%= f.label :is_active, Item.is_actives_i18n[:display] %>
+          <%= f.radio_button :is_active, Item.is_actives.key(false) %>
+          <%= f.label :is_active, Item.is_actives_i18n[:closed] %>
+        </div>
+        <div class="form-group" align="center">
+          <%= f.submit "変更を保存"%>
+        </div>
+      <% end %>
+    </div>
   </div>
-
-  <%= f.submit "変更を保存"%>
-<% end %>
+</div>
