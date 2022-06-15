@@ -10,12 +10,12 @@
           <% if admin_signed_in? %>
             <li class="nav-item">
               <%= link_to admin_customers_path, class: 'nav-link text-light' do %>
-                <i class="fas fa-home"></i>会員一覧
+                <i class="fas fa-users"></i>会員一覧
               <% end %>
             </li>
             <li class="nav-item">
               <%= link_to admin_items_path, class: 'nav-link text-light' do %>
-                <i class="fas fa-home"></i>作品一覧
+                <i class="fas fa-book-open"></i>作品一覧
               <% end %>
             </li>
             <li class="nav-item">
@@ -26,15 +26,15 @@
           <% elsif customer_signed_in? %>
             <li class="nav-item">
               <%= link_to items_path, class: 'nav-link text-light' do %>
-                <i class="fas fa-home"></i>作品一覧
+                <i class="fas fa-book-open"></i>作品一覧
               <% end %>
             </li>
               <%= link_to new_item_path, class: 'nav-link text-light' do %>
-                <i class="fas fa-users"></i>作品投稿
+                <i class="fas fa-palette"></i>作品投稿
               <% end %>
             <li class="nav-item">
               <%= link_to customer_path(current_customer), class: 'nav-link text-light' do %>
-                <i class="fas fa-book-open"></i>マイページ
+                <i class="fas fa-home"></i>マイページ
               <% end %>
             </li>
             <li class="nav-item">
@@ -45,7 +45,7 @@
           <% else %>
             <li class="nav-item">
               <%= link_to items_path, class: 'nav-link text-light' do %>
-                <i class="fas fa-home"></i>作品一覧
+                <i class="fas fa-book-open"></i>作品一覧
               <% end %>
             </li>
             <li class="nav-item">
