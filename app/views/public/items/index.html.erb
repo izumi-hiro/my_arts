@@ -5,8 +5,8 @@
 
   <h3>タグリスト</h3>
   <% @tag_list.each do |list| %>
-    <span>
-      <%= link_to tag_items_path(tag_id: list.id) do %>
+    <span class="tag-name">
+      <%= link_to tag_items_path(tag_id: list.id), class: "text-dark" do %>
         #<%= list.name %>
       <% end %>
       <%= "#{list.items.count}" %>
