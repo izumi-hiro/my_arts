@@ -25,9 +25,13 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+  def guest_sign_in
+    user = Customer.guest
+    sign_in user
+    redirect_to customer_path(user), notice: 'guestuserでログインしました。'
+  end
   protected
-  
+
   def after_sign_in_path_for(resource)
     items_path
   end
@@ -35,13 +39,13 @@ class Public::SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource)
     root_path
   end
-  
+
   def customer_state
-    @customer = Customer.find_by(email: params[:customer][:email])
-    return if !@customer
-    if @customer.valid_password?(params[:customer][:password]) && @customer.is_deleted
-      redirect_to new_customer_registration_path
+    @customer = Customer.find_by(name: params[:customer][:name])
+    redirect_to new_customer_registration_path if !@customer
+    unless @customer.valid_password?(params[:customer][:password]) && @customer._valid?
+      redirect_to new_customer_registration_path, notice: '退会済みか、アカウントが無効のためログインできません'
     end
   end
-  
+
 end
