@@ -40,6 +40,8 @@ class Customer < ApplicationRecord
   end
 
   enum is_deleted: { _invalid: true, _valid: false }
+  
+  
 
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|
