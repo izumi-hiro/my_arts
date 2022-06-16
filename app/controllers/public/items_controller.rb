@@ -1,5 +1,5 @@
 class Public::ItemsController < ApplicationController
-  before_action :authenticate_uer!, except: [:show, :index]
+  before_action :authenticate_customer!, except: [:show, :index]
 
   def index
     @items = Item.where(is_active: true).includes(:item_images).order("created_at DESC").page(params[:page]).per(8)
