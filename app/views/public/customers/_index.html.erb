@@ -2,9 +2,17 @@
   <tbody>
     <% customers.each do |customer| %>
       <tr>
-        <td><%= image_tag customer.get_profile_image(50, 50) %></td>
-        <td><%= customer.name %></td>
+        <td>
+          <%= link_to customer_path(customer) do %>
+            <%= image_tag customer.get_profile_image(70, 70) %>
+            <%= customer.name %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+
+
+

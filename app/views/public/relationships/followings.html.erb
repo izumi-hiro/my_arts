@@ -1,7 +1,12 @@
-<h1>public/relationships/followings</h1>
-<h1>フォロー一覧</h1>
-<% if @customers.present? %>
-  <%= render 'public/customers/index', customers: @customers %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
+<div class="container">
+  <div class="row">
+    <h3>フォロー一覧</h3>
+  </div>
+  <div class="row">
+    <% if @customers.present? %>
+      <%= render 'public/customers/index', customers: @customers %>
+    <% else %>
+      <p>ユーザーはいません</p>
+    <% end %>
+  </div>
+</div>
