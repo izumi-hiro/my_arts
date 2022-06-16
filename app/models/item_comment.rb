@@ -1,8 +1,8 @@
 class ItemComment < ApplicationRecord
-  
+
   belongs_to :customer
   belongs_to :item
-  
-  validates :comment, presence: true
-  
+
+  validates :comment, length: { maximum: 200 }, presence: true
+
 end

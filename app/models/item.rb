@@ -10,6 +10,9 @@ class Item < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   accepts_attachments_for :item_images, attachment: :image
+  
+  validates :title, length: { maximum: 20 }
+  validates :body, length: { maximum: 200 }
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?

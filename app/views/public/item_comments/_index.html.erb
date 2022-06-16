@@ -1,6 +1,6 @@
 <table class="table">
   <tbody>
-    <% item.item_comments.each do |item_comment| %>
+    <% item.item_comments.reverse.each do |item_comment| %>
       <tr id="comment-<%=item_comment.id%>">
         <td>
           <%= link_to customer_path(item_comment.customer) do %>
