@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h3>public/customers/show</h3>
+    <h3><%= @customer.name %>さんのページ</h3>
   </div>
   <div class="row">
     <%= image_tag @customer.get_profile_image(100, 100) %>
@@ -36,10 +36,29 @@
   </div>
 
   <div class="row">
-    <h1>作品一覧</h1>
+    <h3>作品一覧</h3>
   </div>
   <div class="row">
     <%= render 'public/items/index', items: @items %>
   </div>
+  
+  <% if @favorite_list.present? %>
+    <div class="row">
+      <h3>お気に入り一覧</h3>
+    </div>
+    <div class="row">
+      <% @favorite_list.each do |item| %>
+        <div class="col-lg-3 col-md-6">
+          <%= link_to(item) do %>
+            <div class="card">
+              <div class="card-img-top text-center">
+                <%= attachment_image_tag item.item_images.first, :image, size: "260x180", format: "jpg" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 

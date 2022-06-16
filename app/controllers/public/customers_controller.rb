@@ -1,9 +1,11 @@
 class Public::CustomersController < ApplicationController
-  before_action :authenticate_customer!
+  before_action :authenticate_user!, except: [:show]
 
   def show
     @customer = Customer.find(params[:id])
     @items = @customer.items.includes(:item_images).order("created_at DESC")
+    favorites = Favorite.where(customer_id: current_customer.id).pluck(:item_id)
+    @favorite_list = Item.find(favorites)
   end
 
   def edit
