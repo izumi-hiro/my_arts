@@ -21,7 +21,7 @@
           <%= f.label :is_active, Item.is_actives_i18n[:closed] %>
         </div>
         <div class="d-flex justify-content-center mb-5">
-          <%= link_to 'Destroy', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
+          <%= link_to '削除', item_path(@item), method: :delete, data: {confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
           <%= f.submit "変更を保存", class: "btn btn-success ml-5" %>
         </div>
       <% end %>

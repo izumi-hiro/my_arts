@@ -1,12 +1,4 @@
 <div class="container">
-  <div class="row">
-    <h3>タグリスト</h3>
-    <% @tag_list.each do |list| %>
-      <span>
-        #<%= link_to list.name, tag_items_path(tag_id: list.id) %>
-        <%= "#{list.items.count}" %>
-      </span>
-    <% end %>
-  </div>
+  <%= render 'public/items/tag_list', tag_list: @tag_list %>
   <%= render 'public/items/index', items: @items %>
 </div>

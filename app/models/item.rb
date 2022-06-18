@@ -15,7 +15,7 @@ class Item < ApplicationRecord
   validates :body, length: { maximum: 200 }
   
   def name
-    tags.pluck(:name).join(",")
+    tags.pluck(:name).join(',')
   end
 
   def save_tag(sent_tags)

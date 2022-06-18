@@ -2,20 +2,8 @@
   <div class="row">
     <h1>作品一覧</h1>
   </div>
-
-  <h3>タグリスト</h3>
-  <% @tag_list.each do |list| %>
-    <span class="tag-name">
-      <%= link_to tag_items_path(tag_id: list.id), class: "text-dark" do %>
-        #<%= list.name %>
-      <% end %>
-      <%= "#{list.items.count}" %>
-    </span>
-  <% end %>
-
-  <div class="row">
-    <%= render 'public/items/index', items: @items %>
-  </div>
+  <%= render 'public/items/tag_list', tag_list: @tag_list %>
+  <%= render 'public/items/index', items: @items %>
   <div class="d-flex justify-content-center">
     <%= paginate @items, theme: 'twitter-bootstrap-4' %>
   </div>

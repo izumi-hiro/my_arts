@@ -20,7 +20,7 @@ class Public::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
-    tag_list = params[:item][:name].split(",")
+    tag_list = params[:item][:name].split(',')
     if @item.save!
       @item.save_tag(tag_list)
       redirect_to items_path, notice: "作品を投稿しました"
@@ -37,7 +37,7 @@ class Public::ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
     @item.customer_id = current_customer.id
-    tag_list = params[:item][:name].split(nil)
+    tag_list = params[:item][:name].split(',')
     if @item.update(item_params)
       @item.save_tag(tag_list)
       redirect_to item_path(@item), notice: "作品情報を変更しました"
@@ -50,15 +50,15 @@ class Public::ItemsController < ApplicationController
   end
 
   def search
-    @tag_list = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @items = @tag.items.all
+    @tag_list = Tag.all
+    @items = @tag.items.where(is_active: true)
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:title, :body, item_images_images: [])
+    params.require(:item).permit(:title, :body, :is_active, item_images_images: [])
   end
 
 end
