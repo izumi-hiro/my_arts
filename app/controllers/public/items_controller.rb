@@ -2,7 +2,7 @@ class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!, except: [:show, :index]
 
   def index
-    @items = Item.where(is_active: true).includes(:item_images).order("created_at DESC").page(params[:page]).per(8)
+    @items = Item.where(is_active: true, customer: { is_deleted: false}).includes(:customer, :item_images).order("items.created_at DESC").page(params[:page]).per(8)
     @tag_list = Tag.all
   end
 

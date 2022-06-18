@@ -1,31 +1,37 @@
-<h1>admin/items/show</h1>
-
-<% @item.item_images.each do |item_image| %>
-  <%= attachment_image_tag item_image, :image, size: "130x100", format: "jpg" %>
-<% end %>
-
-<%= @item.title %>
-<%= @item.body %>
-
-<% @item_tags.each do |list| %>
-  <span>
-    #<%= list.name %>
-  </span>
-<% end %>
-
-<%= image_tag @item.customer.get_profile_image(100, 100) %>
-<%= @item.customer.name %>
-
-<%= link_to 'Edit', edit_admin_item_path(@item), class: "btn btn-success" %>
-
-<% if @item.is_active_i18n == "公開中" %>
-  <b class="text-success"><%= @item.is_active_i18n %></b>
-<% else %>
-  <b class="text-danger"><%= @item.is_active_i18n %></b>
-<% end %>
-
-<h3>コメント</h3>
-<p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
-<div id="comment-area" class="comments_area">
-  <%= render 'public/item_comments/index', item: @item %>
+<div class="container">
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <div class="row d-flex justify-content-center">
+      <h3>作品情報詳細</h3>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <% @item.item_images.each do |item_image| %>
+        <%= attachment_image_tag item_image, :image, size: "260x200", format: "jpg" %>
+      <% end %>
+    </div>
+    <div class="row d-flex justify-content-center mt-3 mb-3">
+      <% if @item.is_active_i18n == "公開中" %>
+        <b class="text-success"><%= @item.is_active_i18n %></b>
+      <% else %>
+        <b class="text-danger"><%= @item.is_active_i18n %></b>
+      <% end %>
+      <%= link_to 'Edit', edit_admin_item_path(@item), class: "btn btn-success offset-1" %>
+    </div>
+    <%= render 'admin/items/data', item: @item, item_tags: @item_tags %>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <%= link_to admin_customer_path(@customer) do %>
+        <%= image_tag @item.customer.get_profile_image(60, 60) %>
+        <%= @item.customer.name %>
+      <% end %>
+    </div>
+    
+    <div class="row">
+      <h3>コメント</h3>
+    </div>
+    
+    <p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
+    <div id="comment-area" class="comments_area">
+      <%= render 'public/item_comments/index', item: @item %>
+    </div>
+  </div>
 </div>

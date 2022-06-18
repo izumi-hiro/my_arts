@@ -1,0 +1,22 @@
+<table class="table">
+  <tbody>
+    <tr>
+      <td><h6>タイトル</h6></td>
+      <td><h6><%= item.title %></h6></td>
+    </tr>
+    <tr>
+      <td><h6>説明</h6></td>
+      <td><h6><%= item.body %></h6></td>
+    </tr>
+    <tr>
+      <td><h6>タグ</h6></td>
+      <td>
+        <h6>
+          <% item_tags.each do |list| %>
+            <span>#<%= list.name %></span>
+          <% end %>
+        </h6>
+      </td>
+    </tr>
+  </tbody>
+</table>
