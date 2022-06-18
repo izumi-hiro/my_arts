@@ -24,11 +24,9 @@
         <%= @item.customer.name %>
       <% end %>
     </div>
-    
     <div class="row">
       <h3>コメント</h3>
     </div>
-    
     <p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
     <div id="comment-area" class="comments_area">
       <%= render 'public/item_comments/index', item: @item %>

@@ -26,6 +26,12 @@
               <% end %>
             </li>
           <% elsif customer_signed_in? %>
+            <%= form_tag(search_path, method: :get) do %>
+            <%= text_field_tag 'content' %>
+            <%= select_tag 'model', options_for_select({ "作者" => "customer", "作品" => "item" }) %>
+            <%= select_tag 'method', options_for_select({ "完全一致" => "perfect", "部分一致" => "partial" }) %>
+            <%= submit_tag '検索' %>
+          <% end %>
             <li class="nav-item">
               <%= link_to items_path, class: 'nav-link text-light' do %>
                 <i class="fas fa-book-open"></i>作品一覧
