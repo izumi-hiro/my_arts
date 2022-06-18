@@ -1,8 +1,17 @@
-<h1>public/searches/search</h1>
-<% if @model == 'customer' %>
-  <h3>【会員の検索結果】検索ワード：<%= @content %></h3>
-  <%= render 'public/customers/index', customers: @records %>
-<% else @model == 'item' %>
-  <h3>【作品の検索結果】検索ワード：<%= @content %></h3>
+<div class="container">
+  <% if @model == 'customer' %>
+    <div class="row mb-5">
+      <h3>【会員の検索結果】 検索ワード：<%= @content %></h3>
+    </div>
+    <%= render 'public/customers/index', customers: @records %>
+  <% else @model == 'item' %>
+    <div class="row mb-5">
+      <h3>【作品の検索結果】 検索ワード：<%= @content %></h3>
+    </div>
     <%= render 'public/items/index', items: @records %>
-<% end %>
+  <% end %>
+</div>
+
+
+
+
