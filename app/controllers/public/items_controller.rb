@@ -20,7 +20,7 @@ class Public::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     @item.customer_id = current_customer.id
-    tag_list = params[:item][:name].split(nil)
+    tag_list = params[:item][:name].split(",")
     if @item.save!
       @item.save_tag(tag_list)
       redirect_to items_path, notice: "作品を投稿しました"
@@ -31,7 +31,7 @@ class Public::ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @tag_list = @item.tags.pluck(:name).join(",")
+    #@tag_list = @item.tags.pluck(:name).join(",")
   end
 
   def update

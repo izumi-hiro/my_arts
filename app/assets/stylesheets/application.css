@@ -14,19 +14,28 @@
  *= require_self
  */
  
- .top-text {
+ .logo {
+   height: 50px;
+ }
+ 
+ .top {
    padding: 100px;
    background-image: url(image1.jpg);
    background-size: cover;
    background-position: center;
  }
  
- .logo {
-   height: 50px;
+ .about {
+   background-image: url(image2.jpg);
+   background-size: cover;
+   background-position: center;
  }
  
  .about-title {
-   margin-bottom: 30px;
+   margin: 30px;
+   padding: 10px;
+   border-radius: 10px;
+   background-color: #fff3b8;
  }
  
  .about-box {

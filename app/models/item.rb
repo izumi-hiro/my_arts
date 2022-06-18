@@ -13,6 +13,10 @@ class Item < ApplicationRecord
   
   validates :title, length: { maximum: 20 }
   validates :body, length: { maximum: 200 }
+  
+  def name
+    tags.pluck(:name).join(",")
+  end
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
