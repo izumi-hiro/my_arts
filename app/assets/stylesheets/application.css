@@ -14,6 +14,12 @@
  *= require_self
  */
  
+ .top-text {
+   padding: 100px;
+   background-image: url(image1.jpg);
+   background-size: cover;
+   background-position: center;
+ }
  
  .logo {
    height: 50px;
