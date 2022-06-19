@@ -34,14 +34,10 @@
       <%= link_to @customer.followers.count, customer_followers_path(@customer) %>
     </div>
   </div>
-
   <div class="row">
     <h3>作品一覧</h3>
   </div>
-  <div class="row">
-    <%= render 'public/items/index', items: @items %>
-  </div>
-  
+  <%= render 'public/items/index', items: @items %>
   <% if @favorite_list.present? %>
     <div class="row">
       <h3>お気に入り一覧</h3>

@@ -15,7 +15,6 @@ class Item < ApplicationRecord
     validates :item_images
     validates :title, length: { maximum: 20 }
     validates :body, length: { maximum: 200 }
-    validates :tags
   end
 
   def name
