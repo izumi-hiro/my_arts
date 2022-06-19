@@ -1,19 +1,26 @@
-<%# 会員ログインの有無を判断 %>
+<%# ログインの有無を判断 %>
 <% if customer_signed_in? %>
-  <% if item.favorited_by?(current_customer) %>
-    <%= link_to item_favorites_path(item), method: :delete, remote: true do %>
-      <i class="fas fa-heart" area-hidden="true" style="color: red;"></i>
-      <%= item.favorites.count %>
+  <%# 作品の作者がカレントカスタマーではない場合 %>
+  <% if item.customer != current_customer %>
+    <% if item.favorited_by?(current_customer) %>
+      <%= link_to item_favorites_path(item), method: :delete, remote: true do %>
+        <i class="fas fa-heart" area-hidden="true" style="color: red;"></i>
+        <%= item.favorites.count %>
+      <% end %>
+    <% else %>
+      <%= link_to item_favorites_path(item), method: :post, remote: true do %>
+        <i class="fas fa-heart" aria-hidden="true"></i>
+        <%= item.favorites.count %>
+      <% end %>
     <% end %>
+  <%# 作品の作者がカレントカスタマーの場合、リンクのないアイコンを表示 %>
   <% else %>
-    <%= link_to item_favorites_path(item), method: :post, remote: true do %>
-      <i class="fas fa-heart" aria-hidden="true"></i>
-      <%= item.favorites.count %>
-    <% end %>
+    <i class="fas fa-heart" aria-hidden="true" style="color: #e4007f"></i>
+    <%= item.favorites.count %>
   <% end %>
-<%# 会員ログインしていない場合、リンクのないアイコンを %>
+<%# 会員ログインしていない場合、リンクのないアイコンを表示 %>
 <% else %>
-  <i class="fas fa-heart" aria-hidden="true" style="color: #007bff"></i>
+  <i class="fas fa-heart" aria-hidden="true" style="color: #888"></i>
   <%= item.favorites.count %>
 <% end %>
 
