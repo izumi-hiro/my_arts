@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!, except: [:show, :index]
+  before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.where(is_active: true, customer: { is_deleted: false}).includes(:customer, :item_images).order("items.created_at DESC").page(params[:page]).per(8)
@@ -59,6 +60,13 @@ class Public::ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :body, :is_active, item_images_images: [])
+  end
+  
+  def ensure_correct_customer
+    @item = Item.find(params[:id])
+    unless @item.customer == current_customer
+      redirect_to items_path
+    end
   end
 
 end
