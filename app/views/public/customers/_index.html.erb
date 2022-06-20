@@ -1,0 +1,22 @@
+<table class='table'>
+  <tbody>
+    <% customers.each do |customer| %>
+      <tr>
+        <td class="col-3">
+          <%= link_to customer_path(customer) do %>
+            <%= image_tag customer.get_profile_image(100, 100) %>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to customer_path(customer) do %>
+            <%= customer.name %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+

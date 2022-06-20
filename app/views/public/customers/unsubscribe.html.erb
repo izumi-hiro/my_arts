@@ -1,1 +1,12 @@
-<h1>public/customers/unsubscribe</h1>
+<div class="text-center mb-4" >
+  <h4><b>本当に退会しますか？</b></h4>
+  <p>
+    退会すると、会員情報や<br>
+    これまで投稿した作品情報が閲覧できなくなります。<br>
+    退会する場合は、「退会する」をクリックしてください。
+  </p>
+</div>
+<div class="d-flex justify-content-center mb-5">
+  <%= link_to '退会する', customers_withdraw_path, method: :patch, class: "btn btn-danger col-2", data: {confirm: "本当に退会しますか？"} %>
+  <%= link_to '退会しない', customer_path(@customer), class: "btn btn-primary col-2 ml-5" %>
+</div>

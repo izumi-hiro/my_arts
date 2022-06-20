@@ -1,1 +1,29 @@
-<h1>public/items/new</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h3>作品投稿</h3>
+      <%= render 'layouts/errors', obj: @item %>
+      <%= form_with model: @item, local: true do |f| %>
+        <div class="form-group row">
+          <%= f.label :"作品画像", class: "col-sm-3 col-form-label" %>
+          <%= f.attachment_field :item_images_images, multiple: true %>
+        </div>
+        <div class="form-group row">
+          <%= f.label :"タイトル", class: "col-sm-3 col-form-label" %>
+          <%= f.text_field :title, class: "col-md-9" %>
+        </div>
+        <div class="form-group row">  
+          <%= f.label :"説明文", class: "col-sm-3 col-form-label" %>
+          <%= f.text_area :body, size: "45x4" %>
+        </div>
+        <div class="form-group row">  
+          <%= f.label :"タグ", class: "col-sm-3 col-form-label" %>
+          <%= f.text_field :name, placeholder: ",(カンマ)で区切り、複数のタグを入力できます", class: "col-md-9" %>
+        </div>
+        <div class="form-group" align="center">  
+          <%= f.submit "投稿", class: 'btn btn-success' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="container">
+  <div class="row">
+    <h3>フォロー一覧</h3>
+  </div>
+  <div class="row">
+    <% if @customers.present? %>
+      <%= render 'public/customers/index', customers: @customers %>
+    <% else %>
+      <p>フォローはいません</p>
+    <% end %>
+  </div>
+</div>

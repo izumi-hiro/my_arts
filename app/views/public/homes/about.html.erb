@@ -1,1 +1,29 @@
-<h1>public/homes/about</h1>
+<div class="container about">
+  <div class="row d-flex justify-content-center">
+    <h1 class="about-title">会員登録をするとできること</h1>
+  </div>
+  <div class="about-box">
+    <div class="row d-flex justify-content-center">
+      <h3 class="about1">作品を投稿できる</h3>
+      <h5 class="about2">作品が完成したら写真を撮ってMyArtsに投稿しましょう！<br>あなたの作品をたくさんの方に見ていただけます！</h5>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <h3 class="about1">好きな作品に「いいね」できる</h3>
+      <h5 class="about2">好きな作品に「いいね」をして、お気に入り保存できます。<br>マイページからいつでもお気に入りを鑑賞できます。</h5>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <h3 class="about1">作品にコメントできる</h3>
+      <h5 class="about2">その作品を見て感じたことをコメントに残しましょう！<br>その言葉がお互いの創作意欲を高めてくれます。</h5>
+    </div>
+    <div class="row d-flex justify-content-center">
+      <h3 class="about1">作者をフォローできる</h3>
+      <h5 class="about2">気になった作者をフォローすると、<br>その作者の新作や作品一覧をすぐチェックできます。</h5>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center mt-4">
+    <%= link_to new_customer_registration_path, class: "mb-4" do %>
+      <h4 class="about-sign_in">会員登録はこちら</h4>
+    <% end %>
+  </div>
+</div>
+

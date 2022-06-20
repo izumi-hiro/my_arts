@@ -1,1 +1,17 @@
-<h1>public/homes/top</h1>
+<div class="container top">
+  <div class="top-text">
+    <div class="row d-flex justify-content-center">
+      <h1>My Arts</h1>
+    </div>
+    <div class="row d-flex justify-content-center mt-4">
+      <h3>My Artsは、あたなのモノづくりを応援します。</h3><br>
+      <h3>絵画、彫刻、陶芸、手芸、DIY、プラモデル…</h3><br>
+      <h3>どんなジャンルも、作品が完成したらお気軽に投稿しましょう。</h3><br>
+      <h3>互いに作品を鑑賞し、コメントすることで</h3><br>
+      <h3>あなたのモノづくりライフはより豊かになります！</h3>
+    </div>
+  </div>
+  <div class="row col-3 mx-auto mt-5">
+    <%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block", method: :post %>
+  </div>
+</div>
