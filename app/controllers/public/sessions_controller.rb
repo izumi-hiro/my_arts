@@ -44,7 +44,10 @@ class Public::SessionsController < Devise::SessionsController
     @customer = Customer.find_by(name: params[:customer][:name])
     redirect_to new_customer_registration_path if !@customer
     unless @customer.valid_password?(params[:customer][:password]) && @customer._valid?
-      redirect_to new_customer_registration_path, notice: '退会済みか、アカウントが無効のためログインできません'
+      redirect_to new_customer_session_path, notice: '退会済みか、アカウントが無効のためログインできません'
+    end
+    if  @customer.valid_password?(params[:customer][:password]) == nil
+      redirect_to new_customer_session_path, notice: 'パスワードが未入力のためログインできません'
     end
   end
 
