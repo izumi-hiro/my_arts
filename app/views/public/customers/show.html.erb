@@ -18,11 +18,14 @@
           <%= link_to "会員情報編集", edit_customer_path(@customer), class: "btn btn-secondary col-10" %>
         <% end %>
       <% else %>
-        <p></p>
+        <p class="text-danger">フォローはログイン後に行えます</p>
+        <%= link_to new_customer_session_path class: 'btn btn-default' do %>
+          <b>ログインはこちら</b>
+        <% end %>
       <% end %>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-3">
     <div class="col-2">
       <h5>フォロー</h5>
       <%= link_to @customer.followings.count, customer_followings_path(@customer) %>

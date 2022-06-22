@@ -4,8 +4,11 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @items = @customer.items.includes(:item_images).order("created_at DESC")
-    favorites = Favorite.where(customer_id: current_customer.id).pluck(:item_id)
-    @favorite_list = Item.find(favorites)
+    favorites = Favorite.where(customer_id: @customer.id).pluck(:item_id)
+    #会員ステータスがtrue（退会）の作者をdeleted_customer_idsに代入。
+    deleted_customer_ids = Customer.where(is_deleted: true)
+    #お気に入り一覧の作品は、いいねをした作品かつ作品の公開ステータスがtrueである。ただし、deleted_customer_idsに該当する作品は除外。
+    @favorite_list = Item.where(id: favorites, is_active: true).where.not(customer_id: deleted_customer_ids)
   end
 
   def edit
@@ -29,7 +32,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @customer.update(is_deleted: true)
     reset_session
-    redirect_to root_path
+    redirect_to root_path, notice: "退会に成功しました"
   end
 
   private
