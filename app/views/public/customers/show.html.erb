@@ -4,7 +4,7 @@
   </div>
   <div class="row">
     <%= image_tag @customer.get_profile_image(100, 100) %>
-    <div class="offset-1">
+    <div class="col-4 offset-1">
       <h6><%= @customer.name %></h6>
       <h6><%= @customer.introduction %></h6>
     </div>
@@ -15,9 +15,7 @@
         <% elsif @customer.name == "guestuser" %>
           <p>会員情報の編集はできません</p>
         <% else %>
-          <%= link_to edit_customer_path(@customer), class: "btn btn-outline-secondary col-10" do %>
-            <i class="fas fa-user-cog"></i>
-          <% end %>
+          <%= link_to "会員情報編集", edit_customer_path(@customer), class: "btn btn-secondary col-10" %>
         <% end %>
       <% else %>
         <p></p>

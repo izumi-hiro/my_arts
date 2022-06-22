@@ -4,7 +4,7 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :name, length: { maximum: 20 }, uniqueness: true, presence: true
   validates :introduction, length: { maximum: 50 }
 
   has_many :items, dependent: :destroy
@@ -40,8 +40,8 @@ class Customer < ApplicationRecord
   end
 
   enum is_deleted: { _invalid: true, _valid: false }
-  
-  
+
+
 
   def self.guest
     find_or_create_by!(name: 'guestuser' ,email: 'guest@example.com') do |customer|
