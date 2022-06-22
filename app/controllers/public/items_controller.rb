@@ -48,6 +48,9 @@ class Public::ItemsController < ApplicationController
   end
 
   def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to items_path
   end
 
   def search
@@ -61,7 +64,7 @@ class Public::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:title, :body, :is_active, item_images_images: [])
   end
-  
+
   def ensure_correct_customer
     @item = Item.find(params[:id])
     unless @item.customer == current_customer
