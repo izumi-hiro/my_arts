@@ -4,14 +4,21 @@
   </div>
   <div class="row mb-5">
     <div class="col-3">
+      <div class="mb-3">
+        <% if @customer.is_deleted_i18n == "有効" %>
+          <b class="text-success"><%= @customer.is_deleted_i18n %></b>
+        <% else %>
+          <b class="text-danger"><%= @customer.is_deleted_i18n %></b>
+        <% end %>
+      </div>
       <%= image_tag @customer.get_profile_image(100, 100) %>
       <b><%= @customer.name %></b>
     </div>
     <div class="col-3 d-flex align-items-center">
       <%= @customer.introduction %>
     </div>
-    <div class="col-3 d-flex align-items-center">
-      <%= link_to edit_admin_customer_path(@customer), class: "btn btn-outline-secondary btn-block" do %>
+    <div class="col-2 d-flex align-items-center">
+      <%= link_to edit_admin_customer_path(@customer), class: "btn btn-secondary btn-block" do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
     </div>
