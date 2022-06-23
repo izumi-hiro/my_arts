@@ -5,7 +5,9 @@
     </div>
     <div class="row d-flex justify-content-center">
       <% @item.item_images.each do |item_image| %>
-        <%= attachment_image_tag item_image, :image, size: "260x200", format: "jpg" %>
+        <%= link_to item_image.image_url, "data-lightbox": "image-set" do %>
+          <div class="mr-1"><%= image_tag item_image.image_url, class: "show-img" %></div>
+        <% end %>
       <% end %>
     </div>
     <div class="row d-flex justify-content-center mt-3">
