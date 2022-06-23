@@ -14,12 +14,12 @@ class Public::RelationshipsController < ApplicationController
 
   def followings
     customer = Customer.find(params[:customer_id])
-		@customers = customer.followings
+		@customers = customer.followings.where.not(is_deleted: true)
   end
 
   def followers
-    customer = Customer.find(params[:customer_id])
-		@customers = customer.followers
+    customer = Customer.where.not(is_deleted: true).find(params[:customer_id])
+		@customers = customer.followers.where.not(is_deleted: true)
   end
 
 end
