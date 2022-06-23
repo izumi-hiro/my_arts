@@ -3,7 +3,7 @@ class Public::ItemsController < ApplicationController
   before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.where(is_active: true, customer: { is_deleted: false}).includes(:customer, :item_images).order("items.created_at DESC").page(params[:page]).per(12)
+    @items = Item.where(is_active: true, customer: { is_deleted: false}).includes(:customer, :item_images).order("items.created_at DESC").page(params[:page]).per(40)
     @tag_list = Tag.all
   end
 

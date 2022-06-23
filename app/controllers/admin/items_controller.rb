@@ -2,7 +2,7 @@ class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @items = Item.all.includes(:item_images).order("created_at DESC").page(params[:page]).per(10)
+    @items = Item.all.includes(:item_images).order("created_at DESC").page(params[:page]).per(20)
   end
 
   def show

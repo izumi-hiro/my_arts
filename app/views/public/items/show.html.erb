@@ -8,6 +8,7 @@
   </div>
   <div class="row justify-content-center">
     <% @item.item_images.each do |item_image| %>
+      <%# 画像のポップアップ機能の記述。item.imageモデルのimageのurlを指定。image-setにより、複数の画像に対応 %>
       <%= link_to item_image.image_url, "data-lightbox": "image-set" do %>
         <div class="mr-1"><%= image_tag item_image.image_url, class: "show-img" %></div>
       <% end %>
