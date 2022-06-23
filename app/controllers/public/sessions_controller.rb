@@ -43,7 +43,7 @@ class Public::SessionsController < Devise::SessionsController
   def customer_state
     @customer = Customer.find_by(name: params[:customer][:name])
 
-    return redirect_to new_customer_registration_path, notice: '名前を入力してください' if !@customer
+    return redirect_to new_customer_session_path, notice: '名前を入力してください' if !@customer
 
     unless @customer.valid_password?(params[:customer][:password]) && @customer._valid?
       redirect_to new_customer_session_path, notice: '退会済みか、入力内容が無効のためログインできません'
