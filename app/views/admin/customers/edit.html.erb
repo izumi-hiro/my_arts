@@ -22,7 +22,7 @@
           </tbody>
         </table>
         <div class="form-group">
-          <%= f.label :会員ステータス, class: "mr-5" %>
+          <b><%= f.label :会員ステータス, class: "mr-5" %></b>
           <%= f.radio_button :is_deleted, Customer.is_deleteds.key(true) %>
           <%= f.label :is_deleted, Customer.is_deleteds_i18n[:_invalid], class: "mr-5" %>
           <%= f.radio_button :is_deleted, Customer.is_deleteds.key(false) %>
