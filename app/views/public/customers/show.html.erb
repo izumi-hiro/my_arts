@@ -28,11 +28,11 @@
   <div class="row mt-3">
     <div class="col-2">
       <h5>フォロー</h5>
-      <%= link_to @customer.followings.count, customer_followings_path(@customer) %>
+      <%= link_to @customer.followings.where.not(is_deleted: true).count, customer_followings_path(@customer) %>
     </div>
     <div class="col-2 offset-1">
       <h5>フォロワー</h5>
-      <%= link_to @customer.followers.count, customer_followers_path(@customer) %>
+      <%= link_to @customer.followers.where.not(is_deleted: true).count, customer_followers_path(@customer) %>
     </div>
   </div>
   <div class="row">
