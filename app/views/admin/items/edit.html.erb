@@ -1,31 +1,29 @@
 <div class="container">
-  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-    <div class="row d-flex justify-content-center">
-      <h3>作品情報編集</h3>
-    </div>
-    <div class="row d-flex justify-content-center">
-      <% @item.item_images.each do |item_image| %>
-        <%= link_to item_image.image_url, "data-lightbox": "image-set" do %>
-          <div class="mr-1"><%= image_tag item_image.image_url, class: "show-img" %></div>
-        <% end %>
+  <div class="row d-flex justify-content-center">
+    <h3>作品情報編集</h3>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <% @item.item_images.each do |item_image| %>
+      <%= link_to item_image.image_url, "data-lightbox": "image-set" do %>
+        <div class="mr-1"><%= image_tag item_image.image_url, class: "show-img" %></div>
       <% end %>
-    </div>
-    <div class="row d-flex justify-content-center mt-3">
-      <%= render 'admin/items/data', item: @item, item_tags: @item_tags %>
-    </div>
-    <div class="row d-flex justify-content-center">
-      <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
-        <div class="form-group">
-          <b><%= f.label :公開ステータス, class: "mr-10" %></b>
-          <%= f.radio_button :is_active, Item.is_actives.key(true) %>
-          <%= f.label :is_active, Item.is_actives_i18n[:display], class: "mr-5" %>
-          <%= f.radio_button :is_active, Item.is_actives.key(false) %>
-          <%= f.label :is_active, Item.is_actives_i18n[:closed] %>
-        </div>
-        <div class="form-group d-flex justify-content-center mb-5">
-          <%= f.submit "変更を保存", class: "btn btn-success" %>
-        </div>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
+  <div class="row d-flex justify-content-center col-10 offset-1 mt-3">
+    <%= render 'admin/items/data', item: @item, item_tags: @item_tags %>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <%= form_with model: @item, url: admin_item_path, local: true do |f| %>
+      <div class="form-group">
+        <b><%= f.label :公開ステータス, class: "mr-5" %></b>
+        <%= f.radio_button :is_active, Item.is_actives.key(true) %>
+        <%= f.label :is_active, Item.is_actives_i18n[:display], class: "mr-5" %>
+        <%= f.radio_button :is_active, Item.is_actives.key(false) %>
+        <%= f.label :is_active, Item.is_actives_i18n[:closed] %>
+      </div>
+      <div class="form-group d-flex justify-content-center mb-5">
+        <%= f.submit "変更を保存", class: "btn btn-success" %>
+      </div>
+    <% end %>
   </div>
 </div>
