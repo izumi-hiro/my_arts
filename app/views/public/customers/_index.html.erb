@@ -1,6 +1,6 @@
 <table class='table'>
   <tbody>
-    <% customers.where.not(is_deleted: true).each do |customer| %>
+    <% customers.each do |customer| %>
       <tr>
         <td class="col-3">
           <%= link_to customer_path(customer) do %>
