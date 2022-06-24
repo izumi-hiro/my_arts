@@ -68,7 +68,7 @@ class Public::ItemsController < ApplicationController
   def ensure_correct_customer
     @item = Item.find(params[:id])
     unless @item.customer == current_customer
-      redirect_to items_path
+      redirect_to items_path, notice: "アクセス権限がありません"
     end
   end
 
