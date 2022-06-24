@@ -1,6 +1,7 @@
 class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!, except: [:show, :index]
   before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
+  before_action :set_item, only: %i[show]
 
   def index
     @items = Item.where(is_active: true, customer: { is_deleted: false}).includes(:customer, :item_images).order("items.created_at DESC").page(params[:page]).per(40)
@@ -70,6 +71,10 @@ class Public::ItemsController < ApplicationController
     unless @item.customer == current_customer
       redirect_to items_path, notice: "アクセス権限がありません"
     end
+  end
+  
+  def set_item
+    @item = Item.where(is_active: true)
   end
 
 end
