@@ -34,6 +34,15 @@
    background-position: center;
  }
 
+ .top-text {
+   /* 文字の外側に白い縁をつける */
+   color: #000;
+   text-shadow: 1px 1px 0 #fff, -1px -1px 0 #fff,
+                -1px 1px 0 #fff, 1px -1px 0 #fff,
+                0px 1px 0 #fff,  0-1px 0 #fff,
+                -1px 0 0 #fff, 1px 0 0 #fff;
+ }
+
  .about {
    background-image: image-url("image2.jpg");
    background-size: cover;
@@ -44,25 +53,25 @@
    margin: 30px;
    padding: 10px;
    border-radius: 10px;
-   background-color: #fff3b8;
+   background-color: rgba(255,243,184,0.8);
  }
 
  .about-box {
-   margin: 0 auto;
+  margin: 0 auto;
  }
 
 .about1 {
   margin: 10px 10px 50px 10px;
   padding: 20px;
   border-radius: 10px;
-  background-color: pink;
+  background-color: rgba(255,192,203,0.7);
 }
 
 .about2 {
   margin: 50px 10px 10px 10px;
   padding: 20px;
   border-radius: 10px;
-  background-color: lightblue;
+  background-color: rgba(135,206,250,0.7);
 }
 
 .about-sign_in {

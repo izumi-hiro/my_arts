@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   accepts_attachments_for :item_images, attachment: :image
 
   with_options presence: true do
-    validates :item_images, length: { maximum: 8 }
+    validates :item_images, length: { maximum: 16 }
     validates :title, length: { maximum: 20 }
     validates :body, length: { maximum: 200 }
   end
