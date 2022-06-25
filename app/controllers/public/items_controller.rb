@@ -1,18 +1,24 @@
 class Public::ItemsController < ApplicationController
   before_action :authenticate_customer!, except: [:show, :index]
   before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
-  before_action :set_item, only: %i[show]
 
   def index
-    @items = Item.where(is_active: true, customer: { is_deleted: false}).includes(:customer, :item_images).order("items.created_at DESC").page(params[:page]).per(40)
+    # 作品一覧画面では、作品ステータスが公開中かつ作者の会員ステータスが有効の作品が表示される
+    @items = Item.where(is_active: 'display', customer: { is_deleted: '_valid'}).includes(:customer, :item_images).order("items.created_at DESC").page(params[:page]).per(40)
     @tag_list = Tag.all
   end
 
   def show
     @item = Item.find(params[:id])
-    @item_tags = @item.tags
-    @customer = @item.customer
-    @item_comment = ItemComment
+    # 公開中作品は誰でも詳細画面にアクセスできる。非公開作品は、投稿した本人のみ詳細画面にアクセスできる
+    if @item.is_active == 'display' || (@item.is_active == 'closed' && !current_customer.nil? && @item.customer_id == current_customer.id)
+      @item_tags = @item.tags
+      @customer = @item.customer
+      @item_comment = ItemComment
+    else
+      # 投稿した本人以外が、非公開作品の詳細画面のURLを入力すると、作品一覧画面に飛ばされる
+      redirect_to items_path
+    end
   end
 
   def new
@@ -57,7 +63,7 @@ class Public::ItemsController < ApplicationController
   def search
     @tag = Tag.find(params[:tag_id])
     @tag_list = Tag.all
-    @items = @tag.items.where(is_active: true)
+    @items = @tag.items.where(is_active: 'display')
   end
 
   private
@@ -73,8 +79,5 @@ class Public::ItemsController < ApplicationController
     end
   end
   
-  def set_item
-    @item = Item.where(is_active: true)
-  end
 
 end

@@ -1,13 +1,17 @@
 <div class="row mt-4">
   <% items.each do |item| %>
-    <div class="col-lg-3 col-md-6 mb-4">
-      <%= link_to(item) do %>
-        <div class="card border-0">
-          <div class="card-img-top text-center">
-            <%= attachment_image_tag item.item_images.first, :image, format: "jpg", class: "index-img" %>
+    <%# 表示される投稿は公開中のものだけ。非公開作品は、投稿した本人のマイページで、投稿した本人がログイン中のみ閲覧できる %>
+    <% if item.is_active == 'display' || (item.is_active == 'closed' && !current_customer.nil? && item.customer_id == current_customer.id) %>
+      <div class="col-lg-3 col-md-6 mb-4">
+        <%= link_to(item) do %>
+          <div class="card border-0">
+            <div class="card-img-top text-center">
+              <%= attachment_image_tag item.item_images.first, :image, format: "jpg", class: "index-img" %>
+            </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
+      </div>
+    <% end %>
   <% end %>
 </div>
+
