@@ -1,5 +1,6 @@
 class Public::ItemsController < ApplicationController
-  before_action :authenticate_customer!, except: [:show, :index]
+  # 作品詳細画面、作品一覧画面、タグ検索結果画面はログアウト状態でも閲覧可能
+  before_action :authenticate_customer!, except: [:show, :index, :search]
   before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
 
   def index

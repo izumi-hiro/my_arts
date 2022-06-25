@@ -2,7 +2,7 @@
     <h3>タグリスト</h3>
   </div>
   <% tag_list.each do |list| %>
-    <% unless list.items.count == 0 %>
+    <% if list.items.count >= 1 %>
       <span class="tag-name">
         <%= link_to tag_items_path(tag_id: list.id), class: "text-dark" do %>
           #<%= list.name %>
