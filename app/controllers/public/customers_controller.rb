@@ -5,7 +5,6 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @items = @customer.items.includes(:item_images).order("created_at DESC")
-    
     favorites = Favorite.where(customer_id: @customer.id).pluck(:item_id)
     #会員ステータスがtrue（退会）の作者をdeleted_customer_idsに代入。
     deleted_customer_ids = Customer.where(is_deleted: true)

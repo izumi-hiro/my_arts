@@ -10,6 +10,7 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    
     # 公開中作品は誰でも詳細画面にアクセスできる。非公開作品は、投稿した本人のみ詳細画面にアクセスできる
     if @item.is_active == 'display' || (@item.is_active == 'closed' && !current_customer.nil? && @item.customer_id == current_customer.id)
       @item_tags = @item.tags
