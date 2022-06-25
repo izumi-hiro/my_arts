@@ -4,6 +4,7 @@ class Public::CustomersController < ApplicationController
 
   def show
       @customer = Customer.find(params[:id])
+      # 会員ステータスが有効の会員詳細ページのみ、アクセスできる
       if @customer.is_deleted == '_valid'
         @items = @customer.items.includes(:item_images).order("created_at DESC")
         favorites = Favorite.where(customer_id: @customer.id).pluck(:item_id)
