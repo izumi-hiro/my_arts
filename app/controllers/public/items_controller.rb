@@ -10,14 +10,19 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
-    
-    # 公開中作品は誰でも詳細画面にアクセスできる。非公開作品は、投稿した本人のみ詳細画面にアクセスできる
-    if @item.is_active == 'display' || (@item.is_active == 'closed' && !current_customer.nil? && @item.customer_id == current_customer.id)
-      @item_tags = @item.tags
-      @customer = @item.customer
-      @item_comment = ItemComment
+    # 投稿した本人の会員ステータスが有効であれば
+    if @item.customer.is_deleted == '_valid'
+      # 公開中作品は誰でも詳細画面にアクセスできる。非公開作品は、投稿した本人のみ詳細画面にアクセスできる
+      if @item.is_active == 'display' || (@item.is_active == 'closed' && !current_customer.nil? && @item.customer_id == current_customer.id)
+        @item_tags = @item.tags
+        @customer = @item.customer
+        @item_comment = ItemComment
+      else
+        # 投稿した本人以外が、非公開作品の詳細画面のURLを入力すると、作品一覧画面に飛ぶ
+        redirect_to items_path
+      end
+    # 退会済み会員に紐づく作品詳細画面のURLを入力すると、作品一覧画面に飛ぶ
     else
-      # 投稿した本人以外が、非公開作品の詳細画面のURLを入力すると、作品一覧画面に飛ばされる
       redirect_to items_path
     end
   end
@@ -79,6 +84,6 @@ class Public::ItemsController < ApplicationController
       redirect_to items_path, notice: "アクセス権限がありません"
     end
   end
-  
+
 
 end
