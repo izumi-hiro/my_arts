@@ -2,12 +2,16 @@
     <h3>タグリスト</h3>
   </div>
   <% tag_list.each do |list| %>
-    <% if list.items.count >= 1 %>
+    <%# 会員ステータスが有効かつ作品ステータスが公開中の作品をカウント %>
+    <% count = list.items.where(customer_id: Customer.where(is_deleted: '_valid'), is_active: 'display').count %>
+    <%# カウントが1以上のタグを表示 %>
+    <% if count >= 1 %>
       <span class="tag-name">
         <%= link_to tag_items_path(tag_id: list.id), class: "text-dark" do %>
           #<%= list.name %>
         <% end %>
-        <%= "#{list.items.count}" %>
+        <%= "#{count}" %>
       </span>
     <% end %>
   <% end %>
+

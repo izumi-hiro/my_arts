@@ -1,6 +1,6 @@
 <div class="row mt-4">
   <% items.each do |item| %>
-    <%# 表示される投稿は公開中のものだけ。非公開作品は、投稿した本人のマイページで、投稿した本人がログイン中のみ閲覧できる %>
+    <%# 表示される投稿は公開中のものだけ。非公開作品は、投稿した本人のマイページで、ログイン中の投稿した本人のみ閲覧できる %>
     <% if item.is_active == 'display' || (item.is_active == 'closed' && !current_customer.nil? && item.customer_id == current_customer.id) %>
       <div class="col-lg-3 col-md-6 mb-4">
         <%= link_to(item) do %>

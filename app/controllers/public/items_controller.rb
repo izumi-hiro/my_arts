@@ -5,8 +5,10 @@ class Public::ItemsController < ApplicationController
 
   def index
     # 作品一覧画面では、作品ステータスが公開中かつ作者の会員ステータスが有効の作品が表示される
-    @items = Item.where(is_active: 'display', customer: { is_deleted: '_valid'}).includes(:customer, :item_images).order("items.created_at DESC").page(params[:page]).per(40)
-    @tag_list = Tag.all
+    @items = Item.where(is_active: 'display', customer: { is_deleted: '_valid'}).includes(:customer, :item_images)
+            .order("items.created_at DESC").page(params[:page]).per(40)
+    # 作品に紐づく会員ステータスが有効かつ作品ステータスが公開中の作品を表示
+    @tag_list = Tag.includes(items: :customer).where(items: {customers: {is_deleted: '_valid'}, is_active: 'display'})
   end
 
   def show
@@ -69,8 +71,8 @@ class Public::ItemsController < ApplicationController
 
   def search
     @tag = Tag.find(params[:tag_id])
-    @tag_list = Tag.all
-    @items = @tag.items.where(is_active: 'display')
+    @tag_list = Tag.joins(items: :customer).where(items: {customers: {is_deleted: '_valid'}, is_active: 'display'})
+    @items = @tag.items.where(is_active: 'display', customer: { is_deleted: '_valid'}).includes(:customer, :item_images)
   end
 
   private
