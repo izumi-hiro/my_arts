@@ -73,8 +73,9 @@ class Public::ItemsController < ApplicationController
     @tag = Tag.find(params[:tag_id])
     # 会員ステータスが有効かつ作品ステータスが公開中の作品に紐づくタグを表示
     @tag_list = Tag.includes(items: :customer).where(items: {customers: {is_deleted: '_valid'}, is_active: 'display'})
-    # タグの検索結果では会員ステータスが有効かつ作品ステータスが公開中の作品を表示
+    # タグの検索結果では、会員ステータスが有効かつ作品ステータスが公開中の作品を表示
     @items = @tag.items.where(is_active: 'display', customer: { is_deleted: '_valid'}).includes(:customer, :item_images)
+            .order("items.created_at DESC").page(params[:page]).per(40)
   end
 
   private
