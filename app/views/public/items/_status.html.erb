@@ -1,0 +1,6 @@
+<%# 公開ステータス毎に、文字の色を変更 %>
+<% if item.is_active_i18n == "公開中" %>
+  <b class="text-success"><%= item.is_active_i18n %></b>
+<% else %>
+  <b class="text-danger"><%= item.is_active_i18n %></b>
+<% end %>

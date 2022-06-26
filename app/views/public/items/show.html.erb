@@ -1,10 +1,6 @@
 <div class="container">
   <div class="row justify-content-center">
-    <% if @item.is_active_i18n == "公開中" %>
-      <b class="text-success"><%= @item.is_active_i18n %></b>
-    <% else %>
-      <b class="text-danger"><%= @item.is_active_i18n %></b>
-    <% end %>
+    <%= render 'public/items/status', item: @item %>
   </div>
   <div class="row justify-content-center">
     <% @item.item_images.each do |item_image| %>
