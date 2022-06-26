@@ -12,6 +12,8 @@ class Public::ItemsController < ApplicationController
   end
 
   def show
+    # 削除済みの投稿のURLを入力すると、作品一覧画面に飛ぶ。idのレコードがなければ
+    redirect_to items_path and return if Item.find_by(id: params[:id]).blank?
     @item = Item.find(params[:id])
     # 投稿した本人の会員ステータスが有効であれば
     if @item.customer.is_deleted == '_valid'
