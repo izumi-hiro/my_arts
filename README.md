@@ -20,10 +20,10 @@
 作品が完成したときや、他者の作品を鑑賞したいとき。
 
 ## 設計書
-テーブル定義書
-https://docs.google.com/spreadsheets/d/12vGsuI32_pducOH_H9Kow98VYAKQr9j6_LK-EVeh7wc/edit#gid=856357510
-アプリケーション詳細設計
-https://docs.google.com/spreadsheets/d/1poQKrOoGUJQXu7UtitO1DZRfSykGH1sK8hRj3o6Gr_Q/edit#gid=844155663
+- テーブル定義書
+- https://docs.google.com/spreadsheets/d/12vGsuI32_pducOH_H9Kow98VYAKQr9j6_LK-EVeh7wc/edit#gid=856357510
+- アプリケーション詳細設計
+- https://docs.google.com/spreadsheets/d/1poQKrOoGUJQXu7UtitO1DZRfSykGH1sK8hRj3o6Gr_Q/edit#gid=844155663
 
 ## 開発環境
 - OS：Linux(CentOS)
