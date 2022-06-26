@@ -40,7 +40,9 @@
     <% if customer_signed_in? %>
       <div class="col-3 offset-2">
         <% if current_customer != @customer %>
-          <%= render "public/relationships/btn", customer: @customer %>
+          <span class="relationships_buttons_<%= @customer.id %>">
+            <%= render "public/relationships/btn", customer: @customer %>
+          </span>
         <% else %>
           <%= link_to '作品情報編集', edit_item_path(@item), class: "btn btn-secondary" %>
         <% end %>
