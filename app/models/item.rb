@@ -12,8 +12,8 @@ class Item < ApplicationRecord
   accepts_attachments_for :item_images, attachment: :image
   
   with_options presence: true do
-    # 画像に限り、自作したエラーメッセージを用意する
-    validates :item_images, length: { maximum: 4, too_long: "添付できる画像は%{count}件までです" }
+    # 画像に限り、上限以上の画像選択時のエラーメッセージを用意する
+    validates :item_images, length: { maximum: 8, too_long: "添付は%{count}件以内にしてください" }
     validates :title, length: { maximum: 20 }
     validates :body, length: { maximum: 200 }
   end

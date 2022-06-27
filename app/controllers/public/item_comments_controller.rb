@@ -7,7 +7,7 @@ class Public::ItemCommentsController < ApplicationController
     @item_comment.customer_id = current_customer.id
     if @item_comment.save
     else
-      @error = "200文字以内で記入してください"
+      @error = "200文字以内で入力してください"
     end
   end
 
