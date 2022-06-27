@@ -291,4 +291,6 @@ ja:
         tags: タグ
         item_images: 画像
         name: タグ
+      item_comment:
+        comment: コメント
   

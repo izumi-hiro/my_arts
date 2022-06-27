@@ -21,7 +21,7 @@ class Public::ItemsController < ApplicationController
       if @item.is_active == 'display' || (@item.is_active == 'closed' && !current_customer.nil? && @item.customer_id == current_customer.id)
         @item_tags = @item.tags
         @customer = @item.customer
-        @item_comment = ItemComment
+        @item_comment = ItemComment.new
       else
         # 投稿した本人以外が、非公開作品の詳細画面のURLを入力すると、作品一覧画面に飛ぶ
         redirect_to items_path

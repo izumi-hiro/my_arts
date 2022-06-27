@@ -5,8 +5,10 @@ class Public::ItemCommentsController < ApplicationController
     @item_comment = ItemComment.new(item_comment_params)
     @item_comment.item_id = @item.id
     @item_comment.customer_id = current_customer.id
-    @item_comment.save
-    render
+    if @item_comment.save
+    else
+      @error = "200文字以内で記入してください"
+    end
   end
 
   def destroy

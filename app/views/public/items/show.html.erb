@@ -62,6 +62,7 @@
   <div class="row justify-content-center">
     <% if customer_signed_in? %>
       <div class="new_comment">
+        <div id="error-message"></div>
         <%= form_with model: [@item, @item_comment], local: false do |f| %>
           <%= f.text_area :comment, size: "70x4", placeholder: "コメントは200文字以内" %>
           <%= f.submit "送信" %>

@@ -10,9 +10,10 @@ class Item < ApplicationRecord
   has_many :favorites, dependent: :destroy
 
   accepts_attachments_for :item_images, attachment: :image
-
+  
   with_options presence: true do
-    validates :item_images, length: { maximum: 16 }
+    # 画像に限り、自作したエラーメッセージを用意する
+    validates :item_images, length: { maximum: 4, too_long: "添付できる画像は%{count}件までです" }
     validates :title, length: { maximum: 20 }
     validates :body, length: { maximum: 200 }
   end

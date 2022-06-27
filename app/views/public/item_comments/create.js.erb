@@ -1,5 +1,9 @@
 $("#comment-counts").html("コメント数: <%= @item.item_comments.count %>");
 
 $("#comment-area").html("<%= j(render 'public/item_comments/index', item: @item) %>");
+<%# エラーメッセージ %>
+$("#error-message").html("<%=@error%>");
 
-$("#item_comment_comment").val("");
+<% if @error == nil %>
+  $("#item_comment_comment").val("");
+<% end %>
