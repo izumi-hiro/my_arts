@@ -40,7 +40,7 @@
     <% if customer_signed_in? %>
       <div class="col-3 offset-2">
         <% if current_customer != @customer %>
-          <span class="relationships_buttons_<%= @customer.id %>">
+          <span id="relationships_buttons_<%= @customer.id %>">
             <%= render "public/relationships/btn", customer: @customer %>
           </span>
         <% else %>

@@ -11,7 +11,7 @@
     <div class="col-2 offset-1">
       <% if customer_signed_in? %>
         <% if current_customer != @customer %>
-          <span class="relationships_buttons_<%= @customer.id %>">
+          <span id="relationships_buttons_<%= @customer.id %>">
             <%= render "public/relationships/btn", customer: @customer %>
           </span>
         <% elsif @customer.name == "guestuser" %>

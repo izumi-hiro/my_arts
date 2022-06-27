@@ -1,15 +1,17 @@
 class Public::RelationshipsController < ApplicationController
 
   def create
-    customer = Customer.find(params[:customer_id])
-    current_customer.follow(customer)
-		# redirect_to request.referer
+    # 非同期のためcustomerを@customerに変更。2行目(customer)も同様
+    @customer = Customer.find(params[:customer_id])
+    current_customer.follow(@customer)
+		# 非同期のため、redirect_toを削除
   end
 
   def destroy
-    customer = Customer.find(params[:customer_id])
-    current_customer.unfollow(customer)
-		# redirect_to request.referer
+    # 非同期のためcustomerを@customerに変更。2行目(customer)も同様
+    @customer = Customer.find(params[:customer_id])
+    current_customer.unfollow(@customer)
+		# 非同期のため、redirect_toを削除
   end
 
   def followings
