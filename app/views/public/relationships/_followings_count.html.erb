@@ -1,0 +1,3 @@
+<%# フォローのカウントから、退会（論理削除）した会員を除外する %>
+<%= link_to customer.followings.where.not(is_deleted: true).count, customer_followings_path(customer), remote: true %>
+

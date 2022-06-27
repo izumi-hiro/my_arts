@@ -1,1 +1,6 @@
+<%# フォローボタン %>
 $('#relationships_buttons_<%= @customer.id %>').html("<%= j(render 'public/relationships/btn', customer: @customer) %>");
+<%# フォローのカウント %>
+$('#followings_count_<%= @customer.id %>').html('<%= @customer.followings.where.not(is_deleted: true).count %>')
+<%# フォロワーのカウント %>
+$('#followers_count_<%= @customer.id %>').html('<%= @customer.followers.where.not(is_deleted: true).count %>')
