@@ -29,23 +29,19 @@
   </div>
   <div class="row mt-3">
     <div class="col-2">
-      <%= link_to customer_followings_path(@customer) do %>
-        <h5>フォロー</h5>
-      <% end %>
+      <%= link_to "フォロー", customer_followings_path(@customer), class: "btn btn-warning mr-2" %>
       <span id="followings_count_<%= @customer.id %>">
         <%= @customer.followings.where.not(is_deleted: true).count %>
       </span>
     </div>
     <div class="col-2 offset-1">
-      <%= link_to customer_followers_path(@customer) do %>
-        <h5>フォロワー</h5>
-      <% end %>
+      <%= link_to "フォロワー", customer_followers_path(@customer), class: "btn btn-warning mr-2" %>
       <span id="followers_count_<%= @customer.id %>">
         <%= @customer.followers.where.not(is_deleted: true).count %>
       </span>
     </div>
   </div>
-  <div class="row">
+  <div class="row mt-4">
     <h3>作品一覧</h3>
   </div>
   <%= render 'public/items/index', items: @items %>
