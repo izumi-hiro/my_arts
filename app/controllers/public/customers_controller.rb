@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!, except: [:show]
-  before_action :ensure_correct_customer, only: [:edit, :update, :withdraw]
+  before_action :ensure_correct_customer, only: [:edit, :update]
 
   def show
       @customer = Customer.find(params[:id])
