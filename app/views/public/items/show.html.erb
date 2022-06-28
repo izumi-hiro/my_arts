@@ -71,11 +71,15 @@
     <% end %>
   </div>
   <div class="row offset-3">
-    <p id="comment-counts" class="comments-count">コメント数: <%= @item.item_comments.count %></p>
+    <p id="comment-counts" class="comments-count">
+      コメント数: <%= @item.item_comments.count %>
+    </p>
   </div>
   <div class="row justify-content-center">
-    <div id="comment-area" class="comments_area">
-      <%= render 'public/item_comments/index', item: @item %>
+    <div class="col-12">
+      <div id="comment-area" class="comments_area">
+        <%= render 'public/item_comments/index', item: @item %>
+      </div>
     </div>
   </div>
 </div>
